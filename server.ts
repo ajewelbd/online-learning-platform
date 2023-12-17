@@ -1,10 +1,10 @@
 // import express from 'express';
 import http, { IncomingMessage, ServerResponse } from 'http';
 import dotenv from 'dotenv';
-import route from "./routes/routes";
+import route from "./router/routes";
 
 // const app = express();
-dotenv.config();
+dotenv.config(); // Load environment variable
 
 // const port = process.env.PORT || 5000;
 

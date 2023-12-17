@@ -1,6 +1,7 @@
 type Enrollment = {
-    id: number;
-    course_id: number;
+    id?: number;
+    studentName: string;
+    courseId: number;
     date: Date;
 }
 

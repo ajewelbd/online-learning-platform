@@ -20,6 +20,7 @@ const entities = {
         CREATE TABLE IF NOT EXISTS enrollments
         (
             id SERIAL PRIMARY KEY,
+            student_name VARCHAR(255) NOT NULL,
             course_id INTEGER REFERENCES courses(id) ON DELETE CASCADE,
             enrollment_date DATE DEFAULT 'now'
         );
