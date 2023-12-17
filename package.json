@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm tsc",
+    "setup": "node dist/src/database/migrations.js",
+    "setup-dev": "node src/database/migrations.ts",
+    "build": "npx tsc",
     "start": "node dist/server.js",
     "dev": "nodemon server.ts"
   },

@@ -1,9 +1,10 @@
-import dotenv from 'dotenv';
-import DatabaseController from "../controller/DatabaseController";
 
 // This file will be run independently to create tables as setup
 // So we need the environment variables
+const dotenv = require("dotenv");
 dotenv.config();
+
+const Pool = require("pg").Pool;
 
 const entities = {
     course: `
@@ -28,9 +29,16 @@ const entities = {
 }
 
 try {
-    const db = new DatabaseController();
+    const { DB_HOST, DB_USER, DB_PASSWORD, DB_PORT, DB } = process.env;
+    const db = new Pool({
+        host: DB_HOST,
+        user: DB_USER,
+        password: DB_PASSWORD,
+        port: Number(DB_PORT),
+        database: DB
+    })
     db.query(`${entities.course}${entities.enrollments}`);
     console.log("Course & Enrollments created successfully")
-} catch (e: unknown) {
-    console.log("Failed to create the tables");
+} catch (e) {
+    console.log(e, "Failed to create the tables");
 }
