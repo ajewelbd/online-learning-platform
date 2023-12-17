@@ -43,8 +43,6 @@ export default class EnrollmentController {
             if (!isValidCourse) errors.push("Course not found!");
         }
 
-        if (!enroll.enrollmentDate) errors.push("Date is required");
-
         return errors;
     }
 }

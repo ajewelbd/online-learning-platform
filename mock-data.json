@@ -1,0 +1,61 @@
+{
+    "courses": [
+        {
+            "id": 1,
+            "description": "English",
+            "instructor": "Md. Ashraful Alam",
+            "duration": "150",
+            "price": "100.00"
+        },
+        {
+            "id": 2,
+            "description": "Bangla",
+            "instructor": "Md. Mohsin Nur Robin",
+            "duration": "200",
+            "price": "80.50"
+        },
+        {
+            "id": 3,
+            "description": "Web Design",
+            "instructor": "Md. Bellal Hossain",
+            "duration": "250",
+            "price": "30.00"
+        },
+        {
+            "id": 4,
+            "description": "Marketing",
+            "instructor": "Md. Nazmul Hoaasin",
+            "duration": "250",
+            "price": "150.00"
+        },
+        {
+            "id": 5,
+            "description": "Web Development",
+            "instructor": "KM Minar Hossain",
+            "duration": "300",
+            "price": "100.00"
+        }
+    ],
+
+    "singleCourse": {
+        "description": "Single Course",
+        "instructor": "KM Minar Hossain",
+        "duration": "170",
+        "price": "115.00"
+    },
+
+    "enrollemnts": [
+        {
+            "studentName": "Shaleha Begum",
+            "courseId": 5
+        },
+        {
+            "studentName": "Md. Shamsul Alam",
+            "courseId": 3
+        },
+        {
+            "studentName": "Md. Halim Ahmed",
+            "courseId": 1
+        }
+    ]
+}

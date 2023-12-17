@@ -10,14 +10,14 @@ export default class CourseService extends DatabaseController {
 
     async getCourses(skip: number, take: number): Promise<Paginatation> {
         const total = "SELECT COUNT(id) AS total FROM courses";
-        const records = `SELECT id, description, instructor, duration, price FROM courses LIMIT ${take} OFFSET ${skip}`;
+        const records = `SELECT id, description, instructor, duration, price FROM courses ORDER BY id ASC LIMIT ${take} OFFSET ${skip}`;
 
         return this.paginate({total, records})
     }
 
     async filterCourses(filterString: string, skip: number, take: number): Promise<Paginatation> {
         const total = `SELECT COUNT(id) AS total FROM courses WHERE ${filterString}`;
-        const records = `SELECT id, description, instructor, duration, price FROM courses WHERE ${filterString} LIMIT ${take} OFFSET ${skip}`;
+        const records = `SELECT id, description, instructor, duration, price FROM courses WHERE ${filterString} ORDER BY id ASC LIMIT ${take} OFFSET ${skip}`;
 
         return this.paginate({total, records})
     }
@@ -50,7 +50,7 @@ export default class CourseService extends DatabaseController {
 
         try {
             const { rows } = await this.db.query(queries.total);
-            response.total = rows[0]?.total;
+            response.total = Number(rows[0]?.total);
 
             const result = await this.db.query(queries.records);
             response.records = result.rows;

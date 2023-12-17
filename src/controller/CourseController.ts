@@ -40,7 +40,7 @@ export default class CourseController {
             status: 404
         };
 
-        const course = await this.courseService.getCourseById(id);
+        const course = await this.courseService.getCourseById(id) as Course;
 
         if (course) {
             response.data = course;
@@ -83,12 +83,12 @@ export default class CourseController {
         if (!instructor) errors.push("Instructor is required");
 
         if (!duration) errors.push("Duration is required");
-        if (duration && !Number.isInteger(duration)) { // Determine the type of the value valid integre or not.
+        if (duration && Number(duration) != duration) {
             errors.push("Duration must be a valid integer value");
         }
 
         if (!price) errors.push("Price is required");
-        if (price && typeof price !== 'number') { // Determine the type of the value valid float or not.
+        if (price && Number(price) != price) {
             errors.push("Price must be a valid integer/decimal value");
         }
 
@@ -124,4 +124,8 @@ export default class CourseController {
 
         return filter;
     }
+
+    // processNumericValue() {
+
+    // }
 }

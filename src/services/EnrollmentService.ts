@@ -19,8 +19,8 @@ export default class EnrollmentService extends DatabaseController {
 
     async enrollStudent({ studentName, courseId, enrollmentDate }: Enrollment): Promise<Enrollment> {
         try {
-            const sql = `INSERT INTO enrollments(student_name, course_id, enrollment_date) VALUES($1, $2, $3) RETURNING *`;
-            const { rows } = await this.db.query(sql, [studentName, courseId, enrollmentDate]);
+            const sql = `INSERT INTO enrollments(student_name, course_id, enrollment_date) VALUES($1, $2, CURRENT_DATE) RETURNING *`;
+            const { rows } = await this.db.query(sql, [studentName, courseId]);
             return rows[0];
         } catch (e: unknown) {
             console.log(e)
