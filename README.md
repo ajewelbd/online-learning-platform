@@ -40,6 +40,20 @@ npm run dev
 - After that you will see the message:
   [Server running on http://localhost:5000]
 
+## Run via docker
+
+- To build and run the application with Docker Compose, navigate to your project's directory in the terminal and run:
+
+```sh
+docker-compose up --build
+```
+
+- To stop and remove the containers, run:
+
+```sh
+docker-compose down
+```
+
 # API endpoints
 
 These endpoints allow you to handle Stripe subscriptions for Publish and Analyze.
@@ -238,4 +252,12 @@ or any error occured
     "code": 500,
     "error": "An error message"
 }
+```
+
+## Run automatice API test
+
+- To run automatice API test, execute:
+
+```sh
+npm run test
 ```

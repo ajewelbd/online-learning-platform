@@ -1,0 +1,24 @@
+version: '3'
+services:
+  # Node.js application service
+  node_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nodejs18
+    container_name: online-learning-platform
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+
+  # PostgreSQL service
+  postgres:
+    image: postgres:latest
+    container_name: pg
+    environment:
+      POSTGRES_DB: online_learning_platform
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: jewel
+    ports:
+      - "5432:5432"
