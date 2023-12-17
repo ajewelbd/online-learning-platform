@@ -1,24 +1,35 @@
-version: '3'
-services:
-  # Node.js application service
-  node_app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: nodejs18
-    container_name: online-learning-platform
-    ports:
-      - "5000:5000"
-    depends_on:
-      - postgres
+version: '3.8'
 
-  # PostgreSQL service
-  postgres:
-    image: postgres:latest
-    container_name: pg
+services:
+  postgresdb:
+    image: postgres
+    restart: unless-stopped
+    env_file: ./.env
     environment:
-      POSTGRES_DB: online_learning_platform
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: jewel
+      - POSTGRES_USER=$DB_USER
+      - POSTGRES_PASSWORD=$DB_PASSWORD
+      - POSTGRES_DB=$DB
     ports:
-      - "5432:5432"
+      - $DB_PORT:$DB_PORT
+    volumes:
+      - db:/var/lib/postgres
+      
+  app:
+    depends_on:
+      - postgresdb
+    build: ./
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $PORT:$PORT
+    environment:
+      - DB_HOST=postgresdb
+      - DB_USER=$DB_USER
+      - DB_PASSWORD=$DB_PASSWORD
+      - DB_NAME=$DB
+      - DB_PORT=$DB_PORT
+    stdin_open: true
+    tty: true
+
+volumes: 
+  db:

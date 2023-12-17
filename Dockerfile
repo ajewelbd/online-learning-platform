@@ -14,11 +14,12 @@ RUN npm install
 # Copy the application code to the container
 COPY . .
 
-# Database migrations
-RUN npm run setup-dev
+# Build the application
+RUN npm run build
 
 # Expose the port that the application will run on
 EXPOSE 5000
 
-# Command to run your Node.js application
-CMD ["npm", "start"]
+# Database migrations
+# Command to run database migrations & the application
+CMD npm run setup && npm run start
