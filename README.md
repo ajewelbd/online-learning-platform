@@ -56,7 +56,7 @@ docker-compose down
 
 # API endpoints
 
-These endpoints allow you to handle Stripe subscriptions for Publish and Analyze.
+These endpoints allow you to handle course & enrollments.
 
 ## GET
 
@@ -152,12 +152,18 @@ filter courses by instructor, duration or price.You can pass one or all by `&` s
 
 ```js
 // If course exist
-{
-  "id": 1,
-  "description": "English",
-  "instructor": "Md. Ashraful Alam",
-  "duration": "150",
-  "price": "100.00"
+{ 
+	"total": 1,
+  "records":
+	[
+		{
+			"id": 1,
+			"description": "English",
+ 			"instructor": "Md. Ashraful Alam",
+ 			"duration": "150",
+ 			"price": "100.00"
+		}
+	] 
 }
 
 // or any error occured
